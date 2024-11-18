@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -56,7 +55,34 @@ import (
 // leetcode submit region begin(Prohibit modification and deletion)
 func twoSum(nums []int, target int) []int {
 
-	fmt.Println("test")
+	// Example-1：
+	// [2, 7, 11, 15]   target = 9
+	// []
+
+	// [7, 11, 15]   target = 9
+	// [7]
+
+	// Example-2：
+	// [3, 2, 4]  target = 6
+	// []
+
+	// [2, 4] target = 6
+	// [3]
+
+	// [4] target = 6
+	// [2, 4]
+
+	// Solution
+	tmp := make(map[int]int)
+
+	for index, value := range nums {
+		_, ok := tmp[value]
+		if ok {
+			return []int{tmp[value], index}
+		} else {
+			tmp[target-value] = index
+		}
+	}
 
 	return nil
 }
@@ -64,5 +90,5 @@ func twoSum(nums []int, target int) []int {
 //leetcode submit region end(Prohibit modification and deletion)
 
 func TestTwoSum(t *testing.T) {
-
+	t.Log(twoSum([]int{3, 2, 4}, 6))
 }
